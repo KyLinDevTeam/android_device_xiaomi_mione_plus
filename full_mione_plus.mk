@@ -31,10 +31,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/xiaomi/mione_plus/device_mione_plus.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := ghost
-PRODUCT_NAME := aokp_mione_plus
+PRODUCT_DEVICE := mione_plus
+PRODUCT_NAME := full_mione_plus
 PRODUCT_BRAND := xiaomi
-PRODUCT_MODEL := MIONE_plus
+PRODUCT_MODEL := MI-ONE Plus
 PRODUCT_MANUFACTURER := xiaomi
 
 
