@@ -29,9 +29,12 @@
          EVENT_SIM_NETWORK_LOCKED events from the Sim.  If true, this will
          prevent the IccNetworkDepersonalizationPanel from being shown,
          and effectively disable the "Sim network lock" feature. -->
-    <bool name="ignore_sim_network_locked_events">true</bool>
+    <bool name="ignore_perso_locked_events">true</bool>
 
     <!-- This device implements a noise suppression device for in call audio-->
     <bool name="has_in_call_noise_suppression">true</bool>
+
+    <!-- Flag indicating if the phone is a world phone-->
+    <bool name="world_phone">true</bool>
 
 </resources>
