@@ -13,17 +13,8 @@
 #include <time.h>
 #include <termios.h>
 
-#define LOG_TAG "ReadMac"
+#define LOG_TAG "libreadmac"
 #include "cutils/log.h"
-
-//#ifdef __cplusplus
-//extern "C" {
-//#endif
-
-typedef union {
-  unsigned char    oem_item_8[31];
-} nv_item_type;
-
 
 /* temp until they appear in a header file somewhere */
 extern void oncrpc_task_start(void);
@@ -31,26 +22,30 @@ extern void oncrpc_init(void);
 extern int nv_null(void);
 static int nv_available;
 
+
+typedef union {
+	unsigned char    oem_item_8[31];
+} nv_item_type;
+
 typedef enum {
-    NV_READ_F,          /* Read item */
-    NV_WRITE_F,         /* Write item */
+	NV_READ_F,		/* Read item */
+	NV_WRITE_F,		/* Write item */
 } nv_func_enum_type;
 
 typedef enum {
-    NV_OEM_ITEM_8_I                                = 6860
+	NV_OEM_ITEM_8_I = 6860,
 } nv_items_enum_type;
 
 typedef enum {
-    NV_DONE_S,
-    NV_BUSY_S
+	NV_DONE_S,
+	NV_BUSY_S,
 } nv_stat_enum_type;
 
-nv_stat_enum_type nv_cmd_remote 
-( 
-  nv_func_enum_type cmd, 
-  nv_items_enum_type item, 
-  nv_item_type *data_ptr 
-); 
+nv_stat_enum_type nv_cmd_remote (
+	nv_func_enum_type cmd,
+	nv_items_enum_type item,
+	nv_item_type *data_ptr
+);
 
 #ifdef __cplusplus
 }
@@ -77,21 +72,21 @@ unsigned char *read_mac() {
 
 
 /* Method For Bcm4330
- * 
+ *
  * hardware/libhardware_legacy/wifi/wifi.c
- * 
+ *
  * extern char *read_mac();
  * static char mac_buf[150];
- * 
+ *
  * char *x;
- * if(!strcmp(mac_buf,"")) {
+ * if (!strcmp(mac_buf,"")) {
  *     x=read_mac();
  * 
  * //  We must use the following or WI-FI cannot be turned on  
  *     sprintf(mac_buf,"%s mac=0x%02x,0x%02x,0x%02x,0x%02x,0x%02x,0x%02x", DRIVER_MODULE_ARG, x[20],x[16],x[12],x[8],x[4],x[0]);
  * }
- * ALOGI("Got WLAN MAC Address: %s \ ",mac_buf);
- * 
+ * ALOGI("Got WLAN MAC Address: %s\n",mac_buf);
+ *
  */
 
 /* Official Kernel For Bcm4330
@@ -101,5 +96,5 @@ unsigned char *read_mac() {
  *     return ret;
  * }
  * ret = wifi_get_mac_addr(buf);
- * 
+ *
  */
